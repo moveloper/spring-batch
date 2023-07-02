@@ -39,7 +39,8 @@ spring:
     job:
       names: ${job.name:NONE}
       enabled: true
-
+    jdbc:
+      initialize-schema: always
 
 #logging:
 #  pattern:
