@@ -1,7 +1,13 @@
 spring:
   profiles:
     active: mysql
-
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
 ---
 spring:
   config:
@@ -28,7 +34,15 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/springbatch?useUnicode=true&characterEncoding=utf8
       username: batch
       password: batch
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
   batch:
-    jdbc:
-      initialize-schema: always
+    job:
+      names: ${job.name:NONE}
+      enabled: true
+
+
+#logging:
+#  pattern:
+#    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+#  level:
+#    root: DEBUG
